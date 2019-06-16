@@ -83,7 +83,7 @@
         <el-button
           class="right-side-button right-side-confirm"
           type="primary"
-          @click="updateData"
+          @click="affairItem.affairId!==0?updateData(affairItem):addAffair(affairItem)"
         >
           确定
         </el-button>
@@ -128,9 +128,19 @@
         }
       },
       methods:{
-        updateData(){
+        addAffair(item){
+
+          item.Label = this.chosenLabel
+          if (item.Label.labelId===0)
+            return;
+          this.$store.commit("addNewAffair",item)
+        },
+        updateData(item){
           //将数据提交,将现在状态全部保存，也就是currentdata中的数据进行更新
-          this.$store.commit('updateAffair',this.affairItem)
+          if (item.Label.labelId===0)
+            return;
+          this.$store.commit('updateAffair',item)
+          this.$store.commit('setCurrentAcsDeleteLabel')
         },
         clearAllData(){
           //清除相关组件中的数据

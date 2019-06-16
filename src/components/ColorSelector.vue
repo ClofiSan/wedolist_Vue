@@ -38,7 +38,7 @@
           </div>
           <div
             class="tag-box-tochoose right-side-item"
-            style="display:inline-block;color: white"
+            style="padding-left: 5%;padding-right: 5%;display:inline-block;color: white"
           >
             <el-tag
               v-for="item in labelList"
@@ -50,15 +50,52 @@
               {{item.labelName}}
             </el-tag>
 
-            <div class="add-button-tag"></div>
-            <el-button
-              class="addTagButton"
-              icon="el-icon-check"
-              @click="addNewLabel"
-              circle></el-button>
+
           </div>
 
         </div>
+
+        <div class="tag-box right-side-item">
+          <div class="tag-chosen-container right-side-item">
+            <p class="right-side-text">
+              <i class="el-icon-collection-tag"> </i>
+              可删除的标签</p>
+            <el-divider></el-divider>
+          </div>
+          <div
+            v-for="item in acsDeleteLabels"
+            :key="item.labelId"
+            class="tag-box-delete"
+            style="display:inline;color: white;"
+          >
+            <el-row>
+              <el-col :span = 18>
+                <el-tag
+                  class="my-tags my-tags-delete"
+                  :color=" item.labelColor "
+
+                >
+                  {{item.labelName}}
+                </el-tag>
+              </el-col>
+              <el-col :span = 6>
+                <el-button
+                  type="danger"
+                  icon="el-icon-delete"
+                  style="display: inline-block;"
+                  @click="deleteLabel(item)"
+                  circle>
+                </el-button>
+              </el-col>
+            </el-row>
+          </div>
+          <el-divider></el-divider>
+        </div>
+
+
+
+
+
       </div>
       <div class="right-side-button-container right-side-item">
         <el-button
@@ -103,8 +140,9 @@
         closeThis(){
           this.$store.commit('closeRightSide')
         },
-        addNewLabel(){
-
+        deleteLabel(item){
+          this.$store.commit('deleteLabel',item)
+          this.$store.commit('setCurrentAcsDeleteLabel')
         },
         updateLabel(){
           this.$store.commit('updateLabel',this.labelInfo)
@@ -116,6 +154,7 @@
             labelColor:labelsItem.labelColor
           }
           this.$store.commit('setCurrentColorSelectorData',[label,2])
+
         }
       },
       computed:{
@@ -135,12 +174,18 @@
           }
 
           return list;
+        },
+        acsDeleteLabels(){
+          return this.$store.state.currentAcsDeleteLabel
         }
       }
     }
 </script>
 
 <style scoped>
+  .tag-box-delete{
+
+  }
 
   .right-side{
     text-align: left;
@@ -180,13 +225,13 @@
 
   .my-tags{
     display: inline-block;
-
-    padding: 10px;
     width: auto;
-    height: auto;
+    height: 35px;
     text-align: center;
     color: white;
-    font-size: 20px;
+  }
+  .my-tags-delete{
+    margin-left: 10%;
   }
   .right-side-item{
     margin-top: 3%;

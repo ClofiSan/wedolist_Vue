@@ -16,11 +16,20 @@
             <input type="checkbox" class="todo-item-checkbox tui-checkbox" v-model="item.complete">
           </label>
         </el-col>
-        <el-col :span = 22 class="todo-item-text-col">
+        <el-col :span = 20 class="todo-item-text-col">
           <div class="todo-item-text" @click="openEditSide(item)">
 <!--            点击之后打开相关的编辑器-->
             {{ item.title }}
+
           </div>
+        </el-col>
+        <el-col :span=2>
+          <el-button
+            icon="el-icon-delete"
+            style="display: inline-block;"
+            @click="deleteAffair(item)"
+            circle>
+          </el-button>
         </el-col>
       </el-row>
 
@@ -35,6 +44,16 @@
     export default {
         name: "todoCard",
         methods:{
+          deleteAffair(item){
+            item.Label = {
+              labelId:this.labelList.labelId,
+              labelName:this.labelList.labelName,
+              labelColor:this.labelList.labelColor,
+            }
+            // console.log(item)
+            this.$store.commit('deleteAffair',item)
+            this.$store.commit('setCurrentAcsDeleteLabel')
+          },
           //每次点击相关的事项都会修改currentEditData的数据
           openEditSide(affairItem){
             // affairItem.append({labelId:this.labelList.labelId})
@@ -52,6 +71,7 @@
               labelColor:labelList.labelColor
             }
             this.$store.commit('setCurrentColorSelectorData',[labelInfo,2])
+            this.$store.commit('setCurrentAcsDeleteLabel')
           }
 
         },

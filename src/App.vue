@@ -45,7 +45,7 @@
       </el-main>
     </el-container>
 
-    <side-edit ></side-edit>
+    <side-edit style="z-index: 3"></side-edit>
 
 
   </div>
@@ -67,10 +67,32 @@ export default {
   },
   methods:{
     addTag(){
+      var label = {
+        labelId:0,
+        labelColor: '#64B5F6',
+        labelName: '',
+        todolist:[]
+      }
+      this.$store.commit('setCurrentColorSelectorData',[label,2])
 
     },
     addAffair(){
       //清空cur数据区域，时间等于现在，然后在全局写个函数
+
+      var data = {
+        affairId: 0,
+        title: "",
+        content: "",
+        remindTime: new Date().getTime(),
+        complete: false,
+        remindUser: null,
+        Label:{
+          labelId:0,
+          labelName:"暂无标签请选择",
+          labelColor:'#00000F'
+        }
+      }
+      this.$store.commit('setCurrentEditData',[data,1])
 
     }
   },
@@ -107,6 +129,7 @@ export default {
     top:0;
     width: 50%;
     padding: 1%;
+    z-index: 2;
   }
   .my-main{
     margin-top: 8%;

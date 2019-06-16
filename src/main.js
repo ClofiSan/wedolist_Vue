@@ -27,7 +27,8 @@ const store = new Vuex.Store({
     rightSideModel:0,
     currentEditData:{},//包括affair信息和label信息
     currentColorSelectorData:{},
-    currentEditDataChosenLabel:{}
+    currentEditDataChosenLabel:{},
+    currentAcsDeleteLabel:[]
   },
   getters :{
 
@@ -36,6 +37,15 @@ const store = new Vuex.Store({
   },
   mutations :{
 
+
+    setCurrentAcsDeleteLabel(state){
+      state.currentAcsDeleteLabel = []
+      for (let i=0;i<state.personalToDoList.length;i++){
+        if(state.personalToDoList[i].todolist.length===0)
+          state.currentAcsDeleteLabel.push(state.personalToDoList[i])
+      }
+      console.log(state.currentAcsDeleteLabel)
+    },
 
     updateCurrentEditDataLabel(state,data){
       state.currentEditDataChosenLabel = data
@@ -56,11 +66,14 @@ const store = new Vuex.Store({
 
     },
     updateLabel(state,data){
+      if (data.labelId === 0){
+        data.labelId = state.personalToDoList.length + 1
+        state.personalToDoList.push(data)
+      }
       for(let i=0;i< state.personalToDoList.length;i++){
         if (state.personalToDoList[i].labelId === data.labelId){
           state.personalToDoList[i].labelColor = data.labelColor
           state.personalToDoList[i].labelName = data.labelName
-
           break
         }
       }
@@ -69,16 +82,34 @@ const store = new Vuex.Store({
       state.rightSideModel = 0;
     },
     addNewAffair(state,data){
-      //data : labelId,affairall
+      //data : labelId,affairall,
       var labelId = data.Label.labelId
       state.personalToDoList[labelId-1].todolist.push({
-        affairId: state.personalToDoList[labelId-1].todolist.length,
+        affairId: state.personalToDoList[labelId-1].todolist.length + 1,
         title: data.title,
         content: data.content,
         remindTime: data.remindTime,
         complete: false,
         remindUser: null
       })
+      state.rightSideModel = 0
+    },
+    deleteLabel(state,data){
+      state.personalToDoList.splice(data.labelId-1,1)
+      for (let i=data.labelId-1;i<state.personalToDoList.length;i++){
+        state.personalToDoList[i].labelId -= 1
+      }
+      console.log(state.personalToDoList)
+    },
+    deleteAffair(state,data){
+      //记得更新数组的id
+      // console.log(state.personalToDoList[data.Label.labelId-1])
+      state.personalToDoList[data.Label.labelId-1].todolist.splice(data.affairId-1,1)
+      for (let i=data.affairId-1;i<state.personalToDoList[data.Label.labelId-1].todolist.length;i++){
+        state.personalToDoList[data.Label.labelId-1].todolist[i].affairId -= 1;
+      }
+
+
     },
     addNewLabel(state,data){
       //data : labelall
