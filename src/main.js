@@ -28,7 +28,8 @@ const store = new Vuex.Store({
     currentEditData:{},//包括affair信息和label信息
     currentColorSelectorData:{},
     currentEditDataChosenLabel:{},
-    currentAcsDeleteLabel:[]
+    currentAcsDeleteLabel:[],
+    currentHistory:[]
   },
   getters :{
 
@@ -36,7 +37,26 @@ const store = new Vuex.Store({
 
   },
   mutations :{
+    setRightSideModel(state,data){
+      state.rightSideModel = data
+    },
 
+
+    setHistoryList(state,data){
+      state.currentHistory = data
+    },
+
+    addCurrentHistory(state,data){
+      data.affairId = state.currentHistory.length
+      if(!data.Label){
+        data.Label={
+          labelId :0,
+          labelName:'被抛弃的小孩',
+          labelColor:'#E91E63'
+        }
+      }
+      state.currentHistory.push(data)
+    },
 
     setCurrentAcsDeleteLabel(state){
       state.currentAcsDeleteLabel = []
@@ -52,7 +72,8 @@ const store = new Vuex.Store({
     },
     setCurrentEditData(state,data){
       state.currentEditData  = data[0];
-      state.currentEditDataChosenLabel = data[0].Label
+      if(!data[0].complete)
+        state.currentEditDataChosenLabel = data[0].Label
       state.rightSideModel = data[1];
     },
 
@@ -86,6 +107,7 @@ const store = new Vuex.Store({
       var labelId = data.Label.labelId
       state.personalToDoList[labelId-1].todolist.push({
         affairId: state.personalToDoList[labelId-1].todolist.length + 1,
+        affairIndex:state.personalToDoList[labelId-1].todolist.length + 1,
         title: data.title,
         content: data.content,
         remindTime: data.remindTime,
@@ -154,6 +176,8 @@ const store = new Vuex.Store({
       setTimeout(()=>(
         context.commit('setPersonalToDoList',affairData.personalTodoList)
       ),500)
+      context.commit('setHistoryList',affairData.historyList)
+
     }
   }
 

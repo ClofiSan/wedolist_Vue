@@ -15,6 +15,7 @@ export default {
       todolist: [
         {
           affairId: 1,
+          affairIndex: 1,
           title: "整一整没找过我的小组",
           content: "嘿嘿最开心啦",
           remindTime: this.minDate,
@@ -23,6 +24,7 @@ export default {
         },
         {
           affairId: 2,
+          affairIndex: 2,
           title: "准备最终评审",
           content: "捏一捏最终评审的软柿子",
           remindTime: this.minDate,
@@ -38,6 +40,7 @@ export default {
       todolist: [
         {
           affairId: 1,
+          affairIndex: 1,
           title: "骑自行车",
           content: "美利达呀，头盔戴上",
           remindTime: this.minDate,
@@ -46,6 +49,7 @@ export default {
         },
         {
           affairId: 2,
+          affairIndex: 2,
           title: "跑步",
           content: "这件事情好像从来没有做过？",
           remindTime: this.minDate,
@@ -62,6 +66,7 @@ export default {
       todolist: [
         {
           affairId: 1,
+          affairIndex: 1,
           title: "下次吃什么",
           content: "虽然这个问题没什么意思，但是对于孩子们来说这是个严肃的问题",
           remindTime: this.minDate,
@@ -70,6 +75,7 @@ export default {
         },
         {
           affairId: 2,
+          affairIndex: 2,
           title: "需求助教",
           content: "选谁当助教呢？",
           remindTime: this.minDate,
@@ -78,6 +84,7 @@ export default {
         },
         {
           affairId: 3,
+          affairIndex: 3,
           title: "数据结构助教",
           content: "emmmmm最好找个很会刷题的那种助教吧",
           remindTime: this.minDate,
@@ -93,6 +100,7 @@ export default {
           todolist: [
             {
               affairId: 1,
+              affairIndex: 1,
               title: "在另一个账号上",
               content: "I am not Holly Yang!!!",
               remindTime: this.minDate,
@@ -101,6 +109,7 @@ export default {
             },
             {
               affairId: 2,
+              affairIndex:2,
               title: "在另一个账号上",
               content: "I am not Holly Yang!!!",
               remindTime: this.minDate,
@@ -109,6 +118,7 @@ export default {
             },
             {
               affairId: 3,
+              affairIndex:3,
               title: "在另一个账号上",
               content: "I am not Holly Yang!!!",
               remindTime: this.minDate,
@@ -123,6 +133,7 @@ export default {
       labelColor: '#EF6C00',
       todolist: [
         {
+          affairIndex:1,
           affairId: 1,
           title: "在另一个账号上",
           content: "I am not Holly Yang!!!",
@@ -132,6 +143,7 @@ export default {
         },
         {
           affairId: 2,
+          affairIndex: 2,
           title: "在另一个账号上",
           content: "I am not Holly Yang!!!",
           remindTime: this.minDate,
@@ -140,6 +152,7 @@ export default {
         },
         {
           affairId: 3,
+          affairIndex: 3,
           title: "在另一个账号上",
           content: "I am not Holly Yang!!!",
           remindTime: this.minDate,
@@ -148,6 +161,64 @@ export default {
         },
       ]
     }
-        ]
+        ],
+  historyList:[
+    {
+      affairId: 1,
+      title: "整一整没找过我的小组",
+      content: "嘿嘿最开心啦",
+      remindTime: this.minDate,
+      completeTime:'yyyy-MM-dd hh:mm:ss',
+      complete: true,
+      remindUser: null,
+      Label:{
+        labelId :0,
+        labelName:'什么',
+        labelColor:'#999999'
+      }
+    },
+    {
+      affairId: 2,
+      title: "整一整没找过我的小组",
+      content: "嘿嘿最开心啦",
+      remindTime: this.minDate,
+      completeTime:'yyyy-MM-dd hh:mm:ss',
+      complete: true,
+      remindUser: null,
+      Label:{
+        labelId :0,
+        labelName:'什么',
+        labelColor:'#E91E63'
+      }
+    },
+    {
+      affairId: 3,
+      title: "整一整没找过我的小组",
+      content: "嘿嘿最开心啦",
+      remindTime: this.minDate,
+      completeTime:'yyyy-MM-dd hh:mm:ss',
+      complete: true,
+      remindUser: null,
+      Label:{
+        labelId :0,
+        labelName:'什么',
+        labelColor:'#E91E63'
+      }
+    },
+    {
+      affairId: 4,
+      title: "整一整没找过我的小组",
+      content: "嘿嘿最开心啦",
+      remindTime: this.minDate,
+      completeTime:'yyyy-MM-dd hh:mm:ss',
+      complete: true,
+      remindUser: null,
+      Label:{
+        labelId :0,
+        labelName:'什么',
+        labelColor:'#E91E63'
+      }
+    },
+  ]
   }
 

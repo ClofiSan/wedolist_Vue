@@ -143,6 +143,7 @@
         deleteLabel(item){
           this.$store.commit('deleteLabel',item)
           this.$store.commit('setCurrentAcsDeleteLabel')
+          this.$store.commit('setRightSideModel',0)
         },
         updateLabel(){
           this.$store.commit('updateLabel',this.labelInfo)

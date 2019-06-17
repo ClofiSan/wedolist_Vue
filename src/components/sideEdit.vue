@@ -100,8 +100,68 @@
     <div v-else-if="rightSideModel===2">
       <color-selector></color-selector>
     </div>
-  </div>
+    <div v-else-if="rightSideModel===3">
+      <div class = "input-affair-title right-side-item">
+        <p class="right-side-text">
+          <i class="el-icon-edit-outline"> </i>
+          任务名</p>
 
+        <el-input
+          class = "input-affair-title-block"
+          placeholder="输入任务名"
+          v-model = "affairItem.title"
+          :disabled="true"
+        >
+        </el-input>
+
+      </div>
+      <div class="tag-box right-side-item">
+        <div class="tag-chosen-container right-side-item">
+          <p class="right-side-text">
+            <i class="el-icon-collection-tag"> </i>
+            标签</p>
+          <el-tag
+            class="right-side-chosen-tag"
+            :color="'#999999'">
+            {{affairItem.Label.labelName}}
+          </el-tag>
+        </div>
+
+
+      </div>
+      <div class="remind-time-picker right-side-item">
+        <p class="right-side-text">
+          <i class="el-icon-time"> </i>
+          提醒我</p>
+        <el-date-picker
+          class="right-side-time-picker"
+          type="datetime"
+          style = "left: 0;"
+          v-model ="affairItem.remindTime"
+          :disabled="true"
+        >
+        </el-date-picker>
+      </div>
+
+      <div class = "input-affair-content right-side-item">
+
+        <p class="right-side-text">
+          <i class="el-icon-tickets"></i>
+          详情</p>
+        <el-input
+          style = "padding-left: 5%;width: 90%"
+          type="textarea"
+          :rows="7"
+          placeholder="请输入详情"
+          v-model="affairItem.content"
+          :disabled="true"
+        >
+        </el-input>
+
+
+      </div>
+  </div>
+</div>
 
 
 </template>

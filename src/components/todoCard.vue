@@ -1,19 +1,31 @@
 <template>
-  <el-card class="box-card">
+  <el-card
+    :header-style="{backgroundColor:labelList.labelColor}"
+    class="box-card">
 
-    <div slot="header" class="box-card-label" @click="openColorSelector(labelList)">
-      <span style="color: black">{{labelList.labelName}}</span>
-      <el-button class="box-card-label-button" style="float: right; padding: 3px 0" type="text">
-      </el-button>
+    <div
+        slot="header"
+         class="box-card-label "
+         @click="openColorSelector(labelList)">
+      <div style="width: 100%;height: 100%;">
+        <span style="color: white">{{labelList.labelName}}</span>
+      </div>
+
     </div>
     <div v-for="item in labelList.todolist"
          v-if="!item.complete"
-         :key="labelList.labelId.toString()+'-'+item.affairId.toString()"
+         :key="labelList.labelId.toString()+'-'+ (item.affairIndex).toString()"
          class="todo-item" >
       <el-row :gutter = 20>
-        <el-col :span = 2>
-          <label>
-            <input type="checkbox" class="todo-item-checkbox tui-checkbox" v-model="item.complete">
+        <el-col
+          :span = 2>
+          <label >
+            <input
+              type="checkbox"
+              class="todo-item-checkbox tui-checkbox"
+              v-model="item.complete"
+              @click="addHistoryList(item)"
+              >
           </label>
         </el-col>
         <el-col :span = 20 class="todo-item-text-col">
@@ -43,7 +55,33 @@
 //传入的是labelList
     export default {
         name: "todoCard",
+        data(){
+            return{
+              affairKey:0,
+              selfCardHeader:'self-card-header'
+            }
+        },
         methods:{
+          addHistoryList(item){
+            //记录完成的时间戳即可
+            item.Label = {
+              labelId:this.labelList.labelId,
+              labelName:this.labelList.labelName,
+              labelColor:this.labelList.labelColor,
+            }
+            this.deleteAffair(item)
+            let time = new Date()
+            item.completeTime = ''
+            item.completeTime += time.getFullYear().toString() +'-'
+            item.completeTime += time.getMonth().toString() + '-'
+            item.completeTime += time.getDate().toString() + ' '
+            item.completeTime += time.getHours().toString() + ':'
+            item.completeTime += time.getMinutes().toString() + ':'
+            item.completeTime += time.getSeconds().toString() + ''
+
+            this.$store.commit('addCurrentHistory',item)
+            item.complete=true
+          },
           deleteAffair(item){
             item.Label = {
               labelId:this.labelList.labelId,
@@ -53,6 +91,7 @@
             // console.log(item)
             this.$store.commit('deleteAffair',item)
             this.$store.commit('setCurrentAcsDeleteLabel')
+
           },
           //每次点击相关的事项都会修改currentEditData的数据
           openEditSide(affairItem){
@@ -87,9 +126,9 @@
 </script>
 
 <style scoped>
-  .el-card__header{
-    background-color: #64B5F6;
-  }
+
+
+
   .box-card-label{
     font-size: 20px;
   }
