@@ -41,7 +41,6 @@
           content-position="center"
           style="margin-top:5%;font-size: 12px;color: #AAAAAA"
         >其他登录方式</el-divider>
-
             <div class="other-login-container">
               <div
                 class="other-login-container-item"
@@ -61,10 +60,7 @@
               <img src="../assets/QQ.png" alt="">
             </div>
 
-
             </div>
-
-
 
       </el-card>
 

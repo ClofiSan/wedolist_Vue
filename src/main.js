@@ -19,7 +19,6 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state :{
     personalToDoList: [],
-
     //rightside开启的状态，因为是跨域组件，消息要互传
     RIGHT_MODEL_COLOR_SELECT:2,
     RIGHT_MODEL_NULL:0,
@@ -33,15 +32,11 @@ const store = new Vuex.Store({
   },
   getters :{
 
-
-
   },
   mutations :{
     setRightSideModel(state,data){
       state.rightSideModel = data
     },
-
-
     setHistoryList(state,data){
       state.currentHistory = data
     },
@@ -163,21 +158,16 @@ const store = new Vuex.Store({
       }else {
         state.personalToDoList[newLabelId-1].todolist[data.affairId-1] = editData
       }
-
       state.rightSideModel = 0;
-
-
     }
 
   },
   actions :{
     getPersonalToDoList (context){
-
       setTimeout(()=>(
         context.commit('setPersonalToDoList',affairData.personalTodoList)
       ),500)
       context.commit('setHistoryList',affairData.historyList)
-
     }
   }
 

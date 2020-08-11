@@ -1,30 +1,19 @@
-# wedolist
+# WeDoList Web
 
-> the part of web for yangc and qiaoqiao project 
+#### 功能
 
-## Build Setup
+- 添加待办事项
+- 设置/修改待办事项信息
+- 添加标签
+- 修改待办事项标签
+- 查看历史记录
 
-``` bash
-# install dependencies
-npm install
+#### 运行效果
 
-# serve with hot reload at localhost:8080
-npm run dev
+![img](Doc/login.png)
 
-# build for production with minification
-npm run build
+![img](Doc/home.png)
 
-# build for production and view the bundle analyzer report
-npm run build --report
+![img](Doc/history.png)
 
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+![img](Doc/addLabel.png)
